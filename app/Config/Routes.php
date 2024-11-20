@@ -11,6 +11,11 @@ $routes->get('/logout', 'AuthController::logout');
 // Admin routes
 $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
     $routes->get('/', 'AdminController::index');
+    $routes->get('suppliers', 'SuppliersController::index'); 
+    $routes->post('addsuppliers', 'SuppliersController::create');
+
+
+
 });
 
 // User routes
