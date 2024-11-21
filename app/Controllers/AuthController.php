@@ -24,7 +24,7 @@ class AuthController extends BaseController
         ];
 
         if ($model->save($data)) {
-            return redirect()->to('/login')->with('success', 'Registration successful. Please log in.');
+            return redirect()->to('/')->with('success', 'Registration successful. Please log in.');
         }
 
         return redirect()->back()->with('error', 'Registration failed. Please try again.');
