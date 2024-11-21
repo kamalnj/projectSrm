@@ -13,7 +13,7 @@
     
     <?php include 'navUser.php'; ?>
 
-    <form method="post" action="/my-informations/store" class="space-y-4 p-8 bg-white shadow-md rounded-lg w-full">
+    <form method="post" action="/my-informations-general/store" class="space-y-4 p-8 bg-white shadow-md rounded-lg w-full">
         <div class="grid grid-cols-2 gap-4">
             <!-- 1ère moitié des champs (0% à 50%) -->
             <div>
