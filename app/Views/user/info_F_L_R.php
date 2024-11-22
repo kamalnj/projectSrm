@@ -12,7 +12,7 @@
 <body class="bg-gray-100">
     <?php include 'navUser.php'; ?>
 
-    <form method="post" action="/infoFLR/store" class="space-y-4 p-8 bg-white shadow-md rounded-lg w-full">
+    <form method="post" action="/my-informations-flr/store" class="space-y-4 p-8 bg-white shadow-md rounded-lg w-full">
         <div class="grid grid-cols-2 gap-4">
             <!-- Chiffre d'affaires -->
             <div>
@@ -132,44 +132,55 @@
             <!-- Plan de continuité des activités en cas de crise -->
             <div>
                 <label for="plan_continuite" class="block text-sm font-medium text-gray-600">Plan de continuité des activités en cas de crise</label>
+                <input type="hidden" name="plan_continuite" value="0">
                 <input
                     type="checkbox"
                     name="plan_continuite"
                     id="plan_continuite"
                     class="mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    value="<?= isset($data['plan_continuite']) ? $data['plan_continuite'] : '' ?>">
+                    value="1" <?= isset($data['plan_continuite']) && $data['plan_continuite'] ? 'checked' : '' ?>>
             </div>
             <!-- Politique RSE -->
             <div>
                 <label for="politique_rse" class="block text-sm font-medium text-gray-600">Politique RSE</label>
+                <input type="hidden" name="politique_rse" value="0">
                 <input
                     type="checkbox"
                     name="politique_rse"
                     id="politique_rse"
                     class="mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    value="<?= isset($data['politique_rse']) ? $data['politique_rse'] : '' ?>">
+                    value="1" <?= isset($data['politique_rse']) && $data['politique_rse'] ? 'checked' : '' ?>>
             </div>
             <!-- Pratiques éthiques -->
             <div>
                 <label for="pratiques_ethiques" class="block text-sm font-medium text-gray-600">Pratiques éthiques (code de conduite, lutte contre la corruption, etc.)</label>
+                <input type="hidden" name="pratiques_ethiques" value="0">
                 <input
                     type="checkbox"
                     name="pratiques_ethiques"
                     id="pratiques_ethiques"
                     class="mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    value="<?= isset($data['pratiques_ethiques']) ? $data['pratiques_ethiques'] : '' ?>">
+                    value="1" <?= isset($data['pratiques_ethiques']) && $data['pratiques_ethiques'] ? 'checked' : '' ?>>
             </div>
         </div>
-        <!-- Submit Button -->
-        <button
-            type="submit"
-            class="w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-            Suivant
-        </button>
+
         <!-- Bouton Précédent -->
-        <a href="/my-informations-general" class="w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-            Précédent
-        </a>
+        <div class="flex justify-between">
+            <button
+                type="button"
+                onclick="window.location.href='/my-informations-general'"
+                class="w-1/6 bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Précédent
+            </button>
+            <!-- Submit Button -->
+            <button
+                type="submit"
+                class="w-1/6 bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Suivant
+            </button>
+        </div>
+
+
     </form>
 </body>
 

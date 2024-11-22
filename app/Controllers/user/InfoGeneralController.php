@@ -25,9 +25,10 @@ class InfoGeneralController extends Controller
         $model = new CompanyModel();
         $userId = session()->get('user_id');
 
-        // Vérifiez si l'enregistrement existe déjà
+        // Check if a record already exists
         $existingData = $model->where('user_id', $userId)->first();
 
+        // Prepare data
         $data = [
             'user_id' => $userId,
             'entreprise' => $this->request->getPost('entreprise'),
@@ -47,15 +48,14 @@ class InfoGeneralController extends Controller
         ];
 
         if ($existingData) {
-            // Mettre à jour l'enregistrement existant
-            $model->update($existingData['id'], $data);
+            // Update the existing record
+            $model->where('id', $existingData['id'])->set($data)->update();
         } else {
-            // Insérer un nouvel enregistrement
-            $model->save($data);
+            // Insert a new record, ensure array compatibility
+            $model->insert((object) $data);
         }
 
-
-        // Rediriger vers le formulaire suivant
+        // Redirect to the next form
         return redirect()->to('/my-informations-flr');
     }
 }
