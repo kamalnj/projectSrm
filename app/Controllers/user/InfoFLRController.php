@@ -25,6 +25,9 @@ class InfoFLRController extends BaseController
 
         $userId = session()->get('user_id');
 
+        // Vérifiez si l'enregistrement existe déjà
+        $existingData = $model->where('user_id', $userId)->first();
+
         $data = [
             'user_id' => $userId,
             'chiffre_affaires' => $this->request->getPost('chiffre_affaires'),
@@ -42,10 +45,14 @@ class InfoFLRController extends BaseController
             'pratiques_ethiques' => $this->request->getPost('pratiques_ethiques') ? 1 : 0,
         ];
 
-        if (!$model->save($data)) {
-            return redirect()->back()->withInput()->with('errors', $model->errors());
+        if ($existingData) {
+            // Mettre à jour l'enregistrement existant
+            $model->update($existingData['id'], (object)$data);
+        } else {
+            // Insérer un nouvel enregistrement
+            $model->save($data);
         }
 
-        return redirect()->to('/infoFLR')->with('success', 'Informations enregistrées avec succès.');
+        return redirect()->to('/my-informations-clients')->with('success', 'Informations enregistrées avec succès.');
     }
 }
