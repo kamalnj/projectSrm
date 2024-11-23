@@ -22,9 +22,7 @@
                     name="nom"
                     id="nom"
                     class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Votre nom"
-                    value="<?= isset($data['nom']) ? htmlspecialchars($data['nom']) : '' ?>"
-                    required>
+                    placeholder="Votre nom">
             </div>
             <!-- Prénom -->
             <div>
@@ -34,9 +32,7 @@
                     name="prenom"
                     id="prenom"
                     class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Votre prénom"
-                    value="<?= isset($data['prenom']) ? htmlspecialchars($data['prenom']) : '' ?>"
-                    required>
+                    placeholder="Votre prénom">
             </div>
             <!-- Fonction au sein de l'entreprise -->
             <div>
@@ -46,9 +42,7 @@
                     name="fonction"
                     id="fonction"
                     class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Votre fonction"
-                    value="<?= isset($data['fonction']) ? htmlspecialchars($data['fonction']) : '' ?>"
-                    required>
+                    placeholder="Votre fonction">
             </div>
             <!-- Téléphone direct -->
             <div>
@@ -59,9 +53,7 @@
                     id="telephone"
                     class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Votre téléphone direct"
-                    pattern="[0-9]*"
-                    value="<?= isset($data['telephone']) ? htmlspecialchars($data['telephone']) : '' ?>"
-                    required>
+                    pattern="[0-9]*">
             </div>
             <!-- Email -->
             <div>
@@ -71,9 +63,7 @@
                     name="email"
                     id="email"
                     class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Votre email"
-                    value="<?= isset($data['email']) ? htmlspecialchars($data['email']) : '' ?>"
-                    required>
+                    placeholder="Votre email">
             </div>
         </div>
 
@@ -93,6 +83,7 @@
             </button>
         </div>
     </form>
+
 </body>
 
-</html> 
+</html>

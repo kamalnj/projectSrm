@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\user;
+use CodeIgniter\Controller;
 
 use App\Models\CommentaireModel;
 
-class InfoCommentaireController extends BaseController
+class InfoCommentaireController extends Controller
 {
     public function index()
     {
@@ -40,13 +41,13 @@ class InfoCommentaireController extends BaseController
         
         if ($existingData) {
             // Mettre à jour l'enregistrement existant
-            $model->update($existingData['id'], $data);
+            $model->update($existingData['id'], (object)$data);
         } else {
             // Insérer un nouvel enregistrement
             $model->save($data);
         }
 
         // Rediriger ou afficher un message de succès
-        return redirect()->to('/succes')->with('message', 'Données enregistrées avec succès.');
+        return redirect()->back()->with('message', 'Données enregistrées avec succès.');
     }
 } 

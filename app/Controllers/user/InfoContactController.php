@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\user;
+
+use CodeIgniter\Controller;
 
 use App\Models\ContactModel;
 
-class InfoContactController extends BaseController
+class InfoContactController extends Controller
 {
     public function index()
     {
@@ -16,7 +18,6 @@ class InfoContactController extends BaseController
 
         // Passer les données à la vue
         return view('user/info_contact', ['data' => $existingData]);
-        
     }
 
     public function store()
@@ -38,15 +39,10 @@ class InfoContactController extends BaseController
             'email' => $this->request->getPost('email'),
         ];
 
-        // Valider les données (ajoutez votre logique de validation ici)
+        
+        // Insérer un nouvel enregistrement
+        $model->save($data);
 
-        if ($existingData) {
-            // Mettre à jour l'enregistrement existant
-            $model->update($existingData['id'], $data);
-        } else {
-            // Insérer un nouvel enregistrement
-            $model->save($data);
-        }
         // Rediriger ou afficher un message de succès
         return redirect()->to('/my-informations-commentaires')->with('message', 'Données enregistrées avec succès.');
     }
