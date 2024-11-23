@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\user;
 
-use App\Controllers\BaseController;
+use CodeIgniter\Controller;
 use App\Models\ClientseModel;
 
-class InfoClientsController extends BaseController
+class InfoClientsController extends Controller
 {
     public function index()
     {
