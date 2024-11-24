@@ -4,6 +4,7 @@ namespace App\Controllers\user;
 use CodeIgniter\Controller;
 
 use App\Models\CommentaireModel;
+use App\Models\SupplierModel;
 
 class InfoCommentaireController extends Controller
 {
@@ -12,8 +13,17 @@ class InfoCommentaireController extends Controller
         $model = new CommentaireModel();
         $userId = session()->get('user_id');
 
-        // Récupérer les données existantes
-        $existingData = $model->where('user_id', $userId)->first();
+        $supplierModel = new \App\Models\SupplierModel();
+
+        // Récupérer d'abord le fournisseur
+        $supplier = $supplierModel->where('user_id', $userId)->first();
+
+        if (!$supplier) {
+            return redirect()->back()->with('error', 'Fournisseur non trouvé.');
+        }
+
+        // Récupérer les données existantes avec supplier_id
+        $existingData = $model->where('supplier_id', $supplier['id'])->first();
 
         // Passer les données à la vue
         return view('user/info_commentaires', ['data' => $existingData]);
@@ -24,13 +34,24 @@ class InfoCommentaireController extends Controller
     {
         $model = new CommentaireModel();
 
+        $supplierModel = new SupplierModel();
+        
+        // 1. Récupérer le user_id de l'utilisateur connecté
         $userId = session()->get('user_id');
+        
+        // 2. Utiliser ce user_id pour trouver le supplier correspondant
+        $supplier = $supplierModel->where('user_id', $userId)->first();
+        
+        if (!$supplier) {
+            return redirect()->back()->with('error', 'Fournisseur non trouvé.');
+        }
 
-        // Vérifiez si l'enregistrement existe déjà
-        $existingData = $model->where('user_id', $userId)->first();
-        // Récupérer les données du formulaire et les stocker dans $data
+        // Vérifier si l'enregistrement existe déjà
+        $existingData = $model->where('supplier_id', $supplier['id'])->first();
+        
+        // 3. Récupérer les données du formulaire
         $data = [
-            'user_id' => $userId,
+            'supplier_id' => $supplier['id'],
             'commentaire' => $this->request->getPost('commentaire'),
             'remarque' => $this->request->getPost('remarque'),
         ];
@@ -47,7 +68,10 @@ class InfoCommentaireController extends Controller
             $model->save($data);
         }
 
-        // Rediriger ou afficher un message de succès
-        return redirect()->back()->with('message', 'Données enregistrées avec succès.');
+        // Retourner une réponse JSON
+        return $this->response->setJSON([
+            'success' => true,
+            'message' => 'Données enregistrées avec succès'
+        ]);
     }
 } 

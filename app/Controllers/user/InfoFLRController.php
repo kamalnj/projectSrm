@@ -10,10 +10,18 @@ class InfoFLRController extends BaseController
     public function index()
     {
         $model = new CompanyInfoFLRModel();
+        $supplierModel = new \App\Models\SupplierModel();
         $userId = session()->get('user_id');
 
-        // Récupérer les données existantes
-        $existingData = $model->where('user_id', $userId)->first();
+        // Récupérer d'abord le fournisseur
+        $supplier = $supplierModel->where('user_id', $userId)->first();
+
+        if (!$supplier) {
+            return redirect()->back()->with('error', 'Fournisseur non trouvé.');
+        }
+
+        // Récupérer les données existantes avec supplier_id
+        $existingData = $model->where('supplier_id', $supplier['id'])->first();
 
         // Passer les données à la vue
         return view('user/info_F_L_R', ['data' => $existingData]);
@@ -22,14 +30,20 @@ class InfoFLRController extends BaseController
     public function store()
     {
         $model = new CompanyInfoFLRModel();
-
+        $supplierModel = new \App\Models\SupplierModel();
+        
         $userId = session()->get('user_id');
+        $supplier = $supplierModel->where('user_id', $userId)->first();
+        
+        if (!$supplier) {
+            return redirect()->back()->with('error', 'Fournisseur non trouvé.');
+        }
 
-        // Vérifiez si l'enregistrement existe déjà
-        $existingData = $model->where('user_id', $userId)->first();
+        // Vérifier si l'enregistrement existe déjà
+        $existingData = $model->where('supplier_id', $supplier['id'])->first();
 
         $data = [
-            'user_id' => $userId,
+            'supplier_id' => $supplier['id'],
             'chiffre_affaires' => $this->request->getPost('chiffre_affaires'),
             'conditions_paiement' => $this->request->getPost('conditions_paiement'),
             'modalites_facturation' => $this->request->getPost('modalites_facturation'),
@@ -46,10 +60,8 @@ class InfoFLRController extends BaseController
         ];
 
         if ($existingData) {
-            // Mettre à jour l'enregistrement existant
             $model->update($existingData['id'], (object)$data);
         } else {
-            // Insérer un nouvel enregistrement
             $model->save($data);
         }
 

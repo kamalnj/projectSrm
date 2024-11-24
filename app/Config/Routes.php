@@ -23,6 +23,7 @@ $routes->post('/my-informations-commentaires/store', 'user\InfoCommentaireContro
 $routes->get('my-informations-clients', 'User\InfoClientsController::index');
 $routes->post('my-informations-clients/store', 'User\InfoClientsController::store');
 
+$routes->post('my-informations-contact/delete/(:num)', 'user\InfoContactController::delete/$1');
 
 // Admin routes
 $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
