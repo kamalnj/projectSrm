@@ -21,12 +21,10 @@
                     <label for="entreprise" class="block text-sm font-medium text-gray-600">Nom de l'entreprise</label>
                     <input
                         type="text"
-                        name="entreprise"
                         id="entreprise"
-                        class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Nom de l'entreprise"
-                        value="<?= isset($data['entreprise']) ? $data['entreprise'] : '' ?>"
-                        required>
+                        class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm bg-gray-50"
+                        value="<?= isset($supplier['nom']) ? $supplier['nom'] : '' ?>"
+                        readonly>
                 </div>
                 <div>
                     <label for="date_creation" class="block text-sm font-medium text-gray-600">Date de création</label>

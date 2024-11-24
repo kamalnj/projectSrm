@@ -9,7 +9,7 @@ class CompanyInfoFLRModel extends Model
     protected $table = 'company_info_f_l_r'; // Nom de la table
     protected $primaryKey = 'id'; // Clé primaire
     protected $allowedFields = [
-        'user_id',
+        'supplier_id',
         'chiffre_affaires',
         'conditions_paiement',
         'modalites_facturation',

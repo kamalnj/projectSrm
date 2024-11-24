@@ -9,8 +9,7 @@ class CompanyModel extends Model
     protected $table = 'company_info_general'; // Nom de la table dans la base de données
     protected $primaryKey = 'id'; // Clé primaire
     protected $allowedFields = [
-        'user_id',
-        'entreprise',
+        'supplier_id',
         'date_creation',
         'effectif',
         'forme_juridique',
