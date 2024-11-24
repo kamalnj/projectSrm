@@ -12,7 +12,8 @@
 <body class="bg-gray-100">
     <?php include 'navUser.php'; ?>
 
-    <form method="post" action="/my-informations-contact/store" class="space-y-4 p-8 bg-white shadow-md rounded-lg w-full">
+    <div class="min-h-screen flex items-center justify-center">
+    <form method="post" action="/my-informations-contact/store" class="space-y-4 p-8 bg-white shadow-md rounded-lg w-3/4">
         <div class="grid grid-cols-1 gap-4">
             <!-- Nom -->
             <div>
@@ -83,6 +84,7 @@
             </button>
         </div>
     </form>
+    </div>
 
 </body>
 
