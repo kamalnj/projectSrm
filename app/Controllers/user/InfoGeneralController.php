@@ -19,16 +19,14 @@ class InfoGeneralController extends Controller
         // Passer les données à la vue
         return view('user/info_general', ['data' => $existingData]);
     }
-
     public function store()
     {
         $model = new CompanyModel();
         $userId = session()->get('user_id');
 
-        // Check if a record already exists
+        // Vérifiez si l'enregistrement existe déjà
         $existingData = $model->where('user_id', $userId)->first();
 
-        // Prepare data
         $data = [
             'user_id' => $userId,
             'entreprise' => $this->request->getPost('entreprise'),
@@ -46,7 +44,7 @@ class InfoGeneralController extends Controller
             'telephone' => $this->request->getPost('telephone'),
             'site_web' => $this->request->getPost('site_web'),
         ];
-
+    
         if ($existingData) {
             // Update the existing record
             $model->where('id', $existingData['id'])->set($data)->update();
@@ -55,7 +53,9 @@ class InfoGeneralController extends Controller
             $model->insert((object) $data);
         }
 
-        // Redirect to the next form
+
+        // Rediriger vers le formulaire suivant
         return redirect()->to('/my-informations-flr');
     }
+    
 }

@@ -61,9 +61,14 @@
                                     <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-150">
                                         <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"><?= esc($supplier['nom']); ?></td>
                                         <td class="px-4 py-3"><?= esc($supplier['email']); ?></td>
-                                        <td class="px-4 py-3"><?= esc($supplier['category']); ?></td>
-                                        <td class="px-4 py-3">
-                                            <button type="button" class="py-2 px-4 bg-gray-200 hover:bg-gray-300 text-sm font-medium text-gray-900 rounded-lg dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700">View</button>
+                                        <td class=" pl-8 py-3"><?= esc($supplier['category']); ?></td>
+                                        <td class=" pl-3 py-3">
+                                            <a href="<?= site_url('/admin/supplier/view/' . $supplier['id']) ?>"
+                                                class="py-2 px-4 bg-white cursor-pointer hover:bg-gray-300 text-sm font-medium text-gray-900 rounded-lg">
+                                                View
+                                            </a>
+
+
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

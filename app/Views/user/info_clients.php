@@ -14,7 +14,6 @@
 
     <form method="post" action="<?= base_url('/my-informations-clients/store'); ?>" class="space-y-4 p-8 bg-white shadow-md rounded-lg w-full">
         <div class="grid grid-cols-2 gap-4">
-            <!-- Principaux clients ou références -->
             <div>
                 <label for="principaux_clients" class="block text-sm font-medium text-gray-600">Principaux clients ou références</label>
                 <input

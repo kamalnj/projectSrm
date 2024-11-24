@@ -20,18 +20,16 @@ $routes->post('/my-informations-contact/store', 'user\InfoContactController::sto
 $routes->get('/my-informations-commentaires', 'user\InfoCommentaireController::index');
 $routes->post('/my-informations-commentaires/store', 'user\InfoCommentaireController::store');
 
-$routes->get('my-informations-clients', 'user\InfoClientsController::index');
-$routes->post('/my-informations-clients/store', 'user\InfoClientsController::store');
+$routes->get('my-informations-clients', 'User\InfoClientsController::index');
+$routes->post('my-informations-clients/store', 'User\InfoClientsController::store');
+
 
 // Admin routes
 $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
     $routes->get('/', 'AdminController::index');
     $routes->get('suppliers', 'SuppliersController::index'); 
     $routes->post('addsuppliers', 'SuppliersController::create');
-    $routes->post('search/ajax', 'SearchController::ajaxSearch');
-
-
-
+    $routes->get('supplier/view/(:num)', 'InfoSupplierController::view/$1');
 });
 
 // User routes
