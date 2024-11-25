@@ -14,6 +14,7 @@
 
     <div class="min-h-screen flex items-center justify-center">
         <form id="commentForm" method="post" action="/my-informations-commentaires/store" class="space-y-4 p-8 bg-white shadow-md rounded-lg w-3/4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Commentaires et Remarques</h2>
             <div class="grid grid-cols-1 gap-4">
                 <!-- Commentaire -->
                 <div>

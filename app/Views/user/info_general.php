@@ -15,6 +15,11 @@
 
     <div class="min-h-screen flex items-center justify-center">
         <form method="post" action="/my-informations-general/store" class="space-y-4 p-8 bg-white shadow-md rounded-lg w-3/4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Informations Générales</h2>
+            <p class="text-sm text-gray-600 mb-4">
+                Les champs marqués d'un astérisque (<span class="text-red-500">*</span>) sont obligatoires. 
+                Les autres champs sont facultatifs.
+            </p>
             <div class="grid grid-cols-2 gap-4">
                 <!-- 1ère moitié des champs (0% à 50%) -->
                 <div>
@@ -27,7 +32,7 @@
                         readonly>
                 </div>
                 <div>
-                    <label for="date_creation" class="block text-sm font-medium text-gray-600">Date de création</label>
+                    <label for="date_creation" class="block text-sm font-medium text-gray-600">Date de création <span class="text-red-500">*</span></label>
                     <input
                         type="date"
                         name="date_creation"
@@ -37,7 +42,7 @@
                         required>
                 </div>
                 <div>
-                    <label for="effectif" class="block text-sm font-medium text-gray-600">Effectif</label>
+                    <label for="effectif" class="block text-sm font-medium text-gray-600">Effectif <span class="text-red-500">*</span></label>
                     <input
                         type="number"
                         name="effectif"
@@ -47,7 +52,7 @@
                         required>
                 </div>
                 <div>
-                    <label for="forme_juridique" class="block text-sm font-medium text-gray-600">Forme juridique</label>
+                    <label for="forme_juridique" class="block text-sm font-medium text-gray-600">Forme juridique <span class="text-red-500">*</span></label>
                     <input
                         type="text"
                         name="forme_juridique"
@@ -57,7 +62,7 @@
                         required>
                 </div>
                 <div>
-                    <label for="capital_social" class="block text-sm font-medium text-gray-600">Capital social</label>
+                    <label for="capital_social" class="block text-sm font-medium text-gray-600">Capital social <span class="text-red-500">*</span></label>
                     <input
                         type="number"
                         name="capital_social"
@@ -67,7 +72,7 @@
                         required>
                 </div>
                 <div>
-                    <label for="adresse_siege" class="block text-sm font-medium text-gray-600">Adresse du siège social</label>
+                    <label for="adresse_siege" class="block text-sm font-medium text-gray-600">Adresse du siège social <span class="text-red-500">*</span></label>
                     <input
                         type="text"
                         name="adresse_siege"
@@ -77,7 +82,7 @@
                         required>
                 </div>
                 <div>
-                    <label for="n_rc" class="block text-sm font-medium text-gray-600">N RC</label>
+                    <label for="n_rc" class="block text-sm font-medium text-gray-600">N RC <span class="text-red-500">*</span></label>
                     <input
                         type="number"
                         name="n_rc"
@@ -89,7 +94,7 @@
 
                 <!-- 2ème moitié des champs (50% à 100%) -->
                 <div>
-                    <label for="lieu_immatriculation" class="block text-sm font-medium text-gray-600">Lieu d'immatriculation</label>
+                    <label for="lieu_immatriculation" class="block text-sm font-medium text-gray-600">Lieu d'immatriculation <span class="text-red-500">*</span></label>
                     <input
                         type="text"
                         name="lieu_immatriculation"
@@ -99,7 +104,7 @@
                         required>
                 </div>
                 <div>
-                    <label for="n_if" class="block text-sm font-medium text-gray-600">N IF</label>
+                    <label for="n_if" class="block text-sm font-medium text-gray-600">N IF <span class="text-red-500">*</span></label>
                     <input
                         type="number"
                         name="n_if"
@@ -109,7 +114,7 @@
                         required>
                 </div>
                 <div>
-                    <label for="n_patente" class="block text-sm font-medium text-gray-600">N Patente</label>
+                    <label for="n_patente" class="block text-sm font-medium text-gray-600">N Patente <span class="text-red-500">*</span></label>
                     <input
                         type="number"
                         name="n_patente"
@@ -119,7 +124,7 @@
                         required>
                 </div>
                 <div>
-                    <label for="n_ice" class="block text-sm font-medium text-gray-600">N ICE</label>
+                    <label for="n_ice" class="block text-sm font-medium text-gray-600">N ICE <span class="text-red-500">*</span></label>
                     <input
                         type="number"
                         name="n_ice"
@@ -129,7 +134,7 @@
                         required>
                 </div>
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+                    <label for="email" class="block text-sm font-medium text-gray-600">Email <span class="text-red-500">*</span></label>
                     <input
                         type="email"
                         name="email"
@@ -139,7 +144,7 @@
                         required>
                 </div>
                 <div>
-                    <label for="telephone" class="block text-sm font-medium text-gray-600">Téléphone</label>
+                    <label for="telephone" class="block text-sm font-medium text-gray-600">Téléphone <span class="text-red-500">*</span></label>
                     <input
                         type="tel"
                         name="telephone"

@@ -14,26 +14,31 @@
 
     <div class="min-h-screen flex flex-col items-center justify-start py-8 space-y-8">
         <form method="post" action="/my-informations-contact/store" class="space-y-4 p-8 bg-white shadow-md rounded-lg w-3/4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Informations de Contact</h2>
+            <p class="text-sm text-gray-600 mb-4">
+                Les champs marqués d'un astérisque (<span class="text-red-500">*</span>) sont obligatoires. 
+                Les autres champs sont facultatifs.
+            </p>
             <div class="grid grid-cols-1 gap-4">
                 <!-- Nom -->
                 <div>
-                    <label for="nom" class="block text-sm font-medium text-gray-600">Nom</label>
+                    <label for="nom" class="block text-sm font-medium text-gray-600">Nom <span class="text-red-500">*</span></label>
                     <input
                         type="text"
                         name="nom"
                         id="nom"
                         class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Votre nom">
+                        placeholder="Votre nom" >
                 </div>
                 <!-- Prénom -->
                 <div>
-                    <label for="prenom" class="block text-sm font-medium text-gray-600">Prénom</label>
+                    <label for="prenom" class="block text-sm font-medium text-gray-600">Prénom <span class="text-red-500">*</span></label>
                     <input
                         type="text"
                         name="prenom"
                         id="prenom"
                         class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Votre prénom">
+                        placeholder="Votre prénom" >
                 </div>
                 <!-- Fonction au sein de l'entreprise -->
                 <div>
@@ -47,24 +52,23 @@
                 </div>
                 <!-- Téléphone direct -->
                 <div>
-                    <label for="telephone" class="block text-sm font-medium text-gray-600">Téléphone direct</label>
+                    <label for="telephone" class="block text-sm font-medium text-gray-600">Téléphone direct <span class="text-red-500">*</span></label>
                     <input
                         type="tel"
                         name="telephone"
                         id="telephone"
                         class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Votre téléphone direct"
-                        pattern="[0-9]*">
+                        placeholder="Votre téléphone direct"  pattern="[0-9]*">
                 </div>
                 <!-- Email -->
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+                    <label for="email" class="block text-sm font-medium text-gray-600">Email <span class="text-red-500">*</span></label>
                     <input
                         type="email"
                         name="email"
                         id="email"
                         class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Votre email">
+                        placeholder="Votre email" >
                 </div>
             </div>
 

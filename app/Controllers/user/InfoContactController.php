@@ -21,16 +21,6 @@ class InfoContactController extends Controller
 
     public function store()
     {
-        // Vérifier si les champs sont vides
-        if (empty($this->request->getPost('nom')) && 
-            empty($this->request->getPost('prenom')) &&
-            empty($this->request->getPost('fonction')) &&
-            empty($this->request->getPost('telephone')) &&
-            empty($this->request->getPost('email'))) {
-            
-            return redirect()->to('/my-informations-commentaires');
-        }
-
         $model = new ContactModel();
         $supplierModel = new \App\Models\SupplierModel();
         
@@ -40,7 +30,22 @@ class InfoContactController extends Controller
         // 2. Utiliser ce user_id pour trouver le supplier correspondant
         $supplier = $supplierModel->where('user_id', $userId)->first();
         
-        // 3. Récupérer les données du formulaire avec le supplier_id au lieu du user_id
+        // Vérifier si les champs sont vides et s'il existe au moins un contact
+        $contactExists = $model->where('supplier_id', $supplier['id'])->first();
+        if (empty($this->request->getPost('nom')) && 
+            empty($this->request->getPost('prenom')) &&
+            empty($this->request->getPost('fonction')) &&
+            empty($this->request->getPost('telephone')) &&
+            empty($this->request->getPost('email'))) {
+            
+            if (!$contactExists) {
+                return redirect()->back()
+                    ->with('error', 'Veuillez remplir les champs requis ou ajouter un contact.');
+            }
+            return redirect()->to('/my-informations-commentaires');
+        }
+
+        // 4. Récupérer les données du formulaire avec le supplier_id au lieu du user_id
         $data = [
             'supplier_id' => $supplier['id'], 
             'nom' => $this->request->getPost('nom'),
@@ -50,7 +55,7 @@ class InfoContactController extends Controller
             'email' => $this->request->getPost('email'),
         ];
 
-        // 4. Insérer un nouvel enregistrement
+        // 5. Insérer un nouvel enregistrement
         $model->save($data);
 
         return redirect()->to('/my-informations-commentaires')->with('message', 'Données enregistrées avec succès.');

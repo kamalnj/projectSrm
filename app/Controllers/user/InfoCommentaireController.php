@@ -35,6 +35,8 @@ class InfoCommentaireController extends Controller
         $model = new CommentaireModel();
 
         $supplierModel = new SupplierModel();
+
+        $userModel = new \App\Models\UserModel();
         
         // 1. Récupérer le user_id de l'utilisateur connecté
         $userId = session()->get('user_id');
@@ -68,10 +70,41 @@ class InfoCommentaireController extends Controller
             $model->save($data);
         }
 
+        $admins = $userModel->where('role', 'admin')->findAll();
+        // Send email to all admins
+        foreach ($admins as $admin) {
+            $this->sendSupplierEmail($supplier['email'], $admin['email']);
+        }
+
         // Retourner une réponse JSON
         return $this->response->setJSON([
             'success' => true,
             'message' => 'Données enregistrées avec succès'
         ]);
+    }
+
+    private function sendSupplierEmail($email, $email_admin)
+    {
+        $emailService = \Config\Services::email();
+
+        $emailService->setFrom($email);
+        $emailService->setTo($email_admin);
+        $emailService->setSubject('Welcome to Our Service');
+
+        $message = "Dear Admin,\n";
+        $message .= "I would like to inform you that I have completed my file.\n";
+        $message .= "You can now check the updated information.\n";
+        $message .= "Supplier email: {$email}\n";
+        $message .= "Best Regards,\nYour Supplier";
+        
+
+        $emailService->setMessage($message);
+
+        // Send email
+        if (!$emailService->send()) {
+            log_message('error', 'Failed to send email: ' . $emailService->printDebugger());
+        } else {
+            log_message('info', 'Email sent successfully to: ' . $email);
+        }
     }
 } 
