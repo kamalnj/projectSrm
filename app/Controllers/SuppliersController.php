@@ -44,24 +44,12 @@ class SuppliersController extends BaseController
         $db->transBegin();
 
         try {
-            // Save the data to the suppliers table
-            $supplierModel = new SupplierModel();
-            $supplierData = [
-                'nom' => $data['nom'],
-                'email' => $data['email'],
-                'category' => $data['category'],
-            ];
-            $supplierModel->save($supplierData);
-
-            // Get the supplier ID after insertion
-            $supplierId = $supplierModel->insertID();
-
             // Save the data to the users table (for login)
             $userModel = new UserModel();
-            $password = bin2hex(random_bytes(4)); // Génère un mot de passe aléatoire de 8 caractères (4 bytes)  
+            $password = bin2hex(random_bytes(4)); // Génère un mot de passe aléatoire de 8 caractères (4 bytes)
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $userData = [
-                'username' => $data['email'], // Use email as the username
+                'username' => $data['nom'], // Use email as the username
                 'email' => $data['email'],
                 'password' => $hashedPassword, // Hash the password
                 'role' => 'user', // Assign the supplier role
@@ -69,6 +57,16 @@ class SuppliersController extends BaseController
                 'updated_at' => date('Y-m-d H:i:s'),
             ];
             $userModel->save($userData);
+
+            // Save the data to the suppliers table
+            $supplierModel = new SupplierModel();
+            $supplierData = [
+                'user_id' => $userModel->insertID(),
+                'nom' => $data['nom'],
+                'email' => $data['email'],
+                'category' => $data['category'],
+            ];
+            $supplierModel->save($supplierData);
 
             // If everything is successful, commit the transaction
             if ($db->transStatus() === FALSE) {
@@ -81,8 +79,8 @@ class SuppliersController extends BaseController
             // Send email to the user with login credentials
             $this->sendSupplierEmail($data['email'], $password);
 
-            // Redirect to the supplier list page with success message
-            return redirect()->to('/admin/suppliers')->with('success', 'Supplier and user added successfully.');
+            // Send a success response to the frontend
+            return $this->response->setJSON(['success' => true]);
         } catch (\Exception $e) {
             $db->transRollback();
             return redirect()->back()->with('error', 'Failed to add supplier and user: ' . $e->getMessage());
@@ -103,7 +101,7 @@ class SuppliersController extends BaseController
         $message .= "Email: {$email}\n";
         $message .= "Password: {$password}\n";
         $message .= "Best Regards,\nAppSRM";
-        
+
 
         $emailService->setMessage($message);
 

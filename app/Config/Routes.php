@@ -35,6 +35,10 @@ $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
     $routes->get('suppliers', 'SuppliersController::index'); 
     $routes->post('addsuppliers', 'SuppliersController::create');
     $routes->get('supplier/view/(:num)', 'InfoSupplierController::view/$1');
+    $routes->post('supplier/reject/(:num)', 'InfoSupplierController::reject/$1');
+    $routes->post('supplier/accept/(:num)', 'InfoSupplierController::accept/$1');
+    
+
 });
 
 // Routes utilisateur
