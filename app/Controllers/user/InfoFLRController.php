@@ -44,7 +44,9 @@ class InfoFLRController extends BaseController
 
         $data = [
             'supplier_id' => $supplier['id'],
-            'chiffre_affaires' => $this->request->getPost('chiffre_affaires'),
+            'chiffre_affaires_1' => $this->request->getPost('chiffre_affaires_1'),
+            'chiffre_affaires_2' => $this->request->getPost('chiffre_affaires_2'),
+            'chiffre_affaires_3' => $this->request->getPost('chiffre_affaires_3'),
             'conditions_paiement' => $this->request->getPost('conditions_paiement'),
             'modalites_facturation' => $this->request->getPost('modalites_facturation'),
             'principaux_actionnaires' => $this->request->getPost('principaux_actionnaires'),

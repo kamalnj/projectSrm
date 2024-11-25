@@ -10,7 +10,9 @@ class CompanyInfoFLRModel extends Model
     protected $primaryKey = 'id'; // Clé primaire
     protected $allowedFields = [
         'supplier_id',
-        'chiffre_affaires',
+        'chiffre_affaires_1',
+        'chiffre_affaires_2',
+        'chiffre_affaires_3',
         'conditions_paiement',
         'modalites_facturation',
         'principaux_actionnaires',

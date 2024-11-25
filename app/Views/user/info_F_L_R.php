@@ -14,19 +14,51 @@
 
     <div class="min-h-screen flex items-center justify-center">
         <form method="post" action="/my-informations-flr/store" class="space-y-4 p-8 bg-white shadow-md rounded-lg w-3/4">
-            <div class="grid grid-cols-2 gap-4">
-                <!-- Chiffre d'affaires -->
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Informations Financières, Légales et Réglementaires</h2>
+            <p class="text-sm text-gray-600 mb-4">
+                Les champs marqués d'un astérisque (<span class="text-red-500">*</span>) sont obligatoires. 
+                Les autres champs sont facultatifs.
+            </p>
+            <div class="grid grid-cols-3 gap-4">
+                <!-- Chiffre d'affaires année 1 -->
                 <div>
-                    <label for="chiffre_affaires" class="block text-sm font-medium text-gray-600">Chiffre d'affaires (3 dernières années)</label>
+                    <label for="chiffre_affaires_1" class="block text-sm font-medium text-gray-600">Chiffre d'affaires année 1 <span class="text-red-500">*</span></label>
                     <input
                         type="number"
-                        name="chiffre_affaires"
-                        id="chiffre_affaires"
+                        name="chiffre_affaires_1"
+                        id="chiffre_affaires_1"
                         class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Chiffre d'affaires"
-                        value="<?= isset($data['chiffre_affaires']) ? $data['chiffre_affaires'] : '' ?>"
+                        placeholder="Chiffre d'affaires année 1"
+                        value="<?= isset($data['chiffre_affaires_1']) ? $data['chiffre_affaires_1'] : '' ?>"
                         required>
                 </div>
+                <!-- Chiffre d'affaires année 2 -->
+                <div>
+                    <label for="chiffre_affaires_2" class="block text-sm font-medium text-gray-600">Chiffre d'affaires année 2 <span class="text-red-500">*</span></label>
+                    <input
+                        type="number"
+                        name="chiffre_affaires_2"
+                        id="chiffre_affaires_2"
+                        class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Chiffre d'affaires année 2"
+                        value="<?= isset($data['chiffre_affaires_2']) ? $data['chiffre_affaires_2'] : '' ?>"
+                        required>
+                </div>
+                <!-- Chiffre d'affaires année 3 -->
+                <div>
+                    <label for="chiffre_affaires_3" class="block text-sm font-medium text-gray-600">Chiffre d'affaires année 3 <span class="text-red-500">*</span></label>
+                    <input
+                        type="number"
+                        name="chiffre_affaires_3"
+                        id="chiffre_affaires_3"
+                        class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Chiffre d'affaires année 3"
+                        value="<?= isset($data['chiffre_affaires_3']) ? $data['chiffre_affaires_3'] : '' ?>"
+                        required>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+            
                 <!-- Conditions de paiement -->
                 <div>
                     <label for="conditions_paiement" class="block text-sm font-medium text-gray-600">Conditions de paiement</label>
@@ -36,8 +68,7 @@
                         id="conditions_paiement"
                         class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Conditions de paiement"
-                        value="<?= isset($data['conditions_paiement']) ? $data['conditions_paiement'] : '' ?>"
-                        required>
+                        value="<?= isset($data['conditions_paiement']) ? $data['conditions_paiement'] : '' ?>">
                 </div>
                 <!-- Modalités de facturation -->
                 <div>
@@ -52,7 +83,7 @@
                 </div>
                 <!-- Principaux Actionnaires -->
                 <div>
-                    <label for="principaux_actionnaires" class="block text-sm font-medium text-gray-600">Principaux Actionnaires</label>
+                    <label for="principaux_actionnaires" class="block text-sm font-medium text-gray-600">Principaux Actionnaires <span class="text-red-500">*</span></label>
                     <input
                         type="text"
                         name="principaux_actionnaires"
@@ -64,7 +95,7 @@
                 </div>
                 <!-- Représentant légal -->
                 <div>
-                    <label for="representant_legal" class="block text-sm font-medium text-gray-600">Représentant légal</label>
+                    <label for="representant_legal" class="block text-sm font-medium text-gray-600">Représentant légal <span class="text-red-500">*</span></label>
                     <input
                         type="text"
                         name="representant_legal"
@@ -83,8 +114,7 @@
                         id="qualite_representant_legal"
                         class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Qualité du représentant légal"
-                        value="<?= isset($data['qualite_representant_legal']) ? $data['qualite_representant_legal'] : '' ?>"
-                        required>
+                        value="<?= isset($data['qualite_representant_legal']) ? $data['qualite_representant_legal'] : '' ?>">
                 </div>
                 <!-- Maison-mère/ Filiales -->
                 <div>

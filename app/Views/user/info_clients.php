@@ -14,6 +14,7 @@
 
     <div class="min-h-screen flex items-center justify-center">
         <form method="post" action="<?= base_url('/my-informations-clients/store'); ?>" class="space-y-4 p-8 bg-white shadow-md rounded-lg w-3/4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Références et Clients</h2>
             <div class="grid gap-4">
             <!-- Principaux clients ou références -->
             <div>
