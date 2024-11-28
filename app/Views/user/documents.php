@@ -11,55 +11,102 @@
 
 <body class="bg-gray-100">
     <?php include 'navUser.php'; ?>
-    <div class="container space-y-4 p-8 bg-white shadow-md rounded-lg w-3/4 mx-auto mt-4">
-        <h1 class="text-2xl font-bold text-gray-800 mb-4">Télécharger des fichiers</h1>
+    <div class="container mx-auto p-8">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Documents requis</h1>
+        
+        <?php if (session()->getFlashdata('error')): ?>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <span class="block sm:inline"><?= session()->getFlashdata('error') ?></span>
+            </div>
+        <?php endif; ?>
 
-        <div class="grid grid-cols-3 gap-4 p-4 ">
-            <!-- Formulaire pour le premier fichier -->
-            <form class="max-w-lg mx-auto bg-white shadow-md p-4 rounded-lg" action="/documents/upload" method="post" enctype="multipart/form-data">
-                <label class="block mb-2 text-sm font-medium text-gray-900" for="files1">RC</label>
-                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" aria-describedby="user_avatar_help1" id="files1" name="files[]" accept=".pdf, .jpg, .jpeg, .png" required type="file">
-                <div class="mt-1 text-sm text-gray-500" id="user_avatar_help1">Vous pouvez télécharger jusqu'à 6 fichiers.</div>
-                <button type="submit" class="mt-4 w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Téléverser</button>
-            </form>
+        <?php if (session()->getFlashdata('success')): ?>
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <span class="block sm:inline"><?= session()->getFlashdata('success') ?></span>
+            </div>
+        <?php endif; ?>
 
-            <!-- Répéter pour les autres fichiers -->
-            <form class="max-w-lg mx-auto mt-4 bg-white shadow-md p-4 rounded-lg" action="/user/upload" method="post" enctype="multipart/form-data">
-                <label class="block mb-2 text-sm font-medium text-gray-900" for="files2">Attestation regularite fiscale</label>
-                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" aria-describedby="user_avatar_help2" id="files2" name="files[]" accept=".pdf, .jpg, .jpeg, .png" type="file">
-                <div class="mt-1 text-sm text-gray-500" id="user_avatar_help2">Vous pouvez télécharger jusqu'à 6 fichiers.</div>
-                <button type="submit" class="mt-4 w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Téléverser</button>
-            </form>
+        <form action="/documents/upload" method="post" enctype="multipart/form-data" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- RC -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-semibold mb-4">RC</h3>
+                    <input type="file" name="documents[rc]" accept=".pdf,.jpg,.jpeg,.png" class="w-full">
+                    <?php if (isset($documents['rc'])): ?>
+                        <p class="text-sm text-blue-600 mt-2">
+                            Fichier actuel : <?= $documents['rc']['file_name'] ?>
+                        </p>
+                    <?php endif; ?>
+                    <p class="text-sm text-gray-500 mt-2">Format: PDF, JPG, PNG</p>
+                </div>
 
-            <form class="max-w-lg mx-auto mt-4 bg-white shadow-md p-4 rounded-lg" action="/user/upload" method="post" enctype="multipart/form-data">
-                <label class="block mb-2 text-sm font-medium text-gray-900" for="files3">Attestation CNSS</label>
-                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" aria-describedby="user_avatar_help3" id="files3" name="files[]" accept=".pdf, .jpg, .jpeg, .png" type="file">
-                <div class="mt-1 text-sm text-gray-500" id="user_avatar_help3">Vous pouvez télécharger jusqu'à 6 fichiers.</div>
-                <button type="submit" class="mt-4 w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Téléverser</button>
-            </form>
-        </div>
-        <div class="grid grid-cols-3 gap-4 p-4">
-            <form class="max-w-lg mx-auto mt-4 bg-white shadow-md p-4 rounded-lg" action="/user/upload" method="post" enctype="multipart/form-data">
-                <label class="block mb-2 text-sm font-medium text-gray-900" for="files4">Attestation de RIB</label>
-                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" aria-describedby="user_avatar_help4" id="files4" name="files[]" accept=".pdf, .jpg, .jpeg, .png" type="file">
-                <div class="mt-1 text-sm text-gray-500" id="user_avatar_help4">Vous pouvez télécharger jusqu'à 6 fichiers.</div>
-                <button type="submit" class="mt-4 w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Téléverser</button>
-            </form>
+                <!-- Attestation régularité fiscale -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-semibold mb-4">Attestation régularité fiscale</h3>
+                    <input type="file" name="documents[attestation_fiscale]" accept=".pdf,.jpg,.jpeg,.png" class="w-full">
+                    <?php if (isset($documents['attestation_fiscale'])): ?>
+                        <p class="text-sm text-blue-600 mt-2">
+                            Fichier actuel : <?= $documents['attestation_fiscale']['file_name'] ?>
+                        </p>
+                    <?php endif; ?>
+                    <p class="text-sm text-gray-500 mt-2">Format: PDF, JPG, PNG</p>
+                </div>
 
-            <form class="max-w-lg mx-auto mt-4 bg-white shadow-md p-4 rounded-lg" action="/user/upload" method="post" enctype="multipart/form-data">
-                <label class="block mb-2 text-sm font-medium text-gray-900" for="files5">Bilan des 3 dernieres annees</label>
-                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" aria-describedby="user_avatar_help5" id="files5" name="files[]" accept=".pdf, .jpg, .jpeg, .png" type="file">
-                <div class="mt-1 text-sm text-gray-500" id="user_avatar_help5">Vous pouvez télécharger jusqu'à 6 fichiers.</div>
-                <button type="submit" class="mt-4 w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Téléverser</button>
-            </form>
+                <!-- Attestation CNSS -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-semibold mb-4">Attestation CNSS</h3>
+                    <input type="file" name="documents[attestation_cnss]" accept=".pdf,.jpg,.jpeg,.png" class="w-full">
+                    <?php if (isset($documents['attestation_cnss'])): ?>
+                        <p class="text-sm text-blue-600 mt-2">
+                            Fichier actuel : <?= $documents['attestation_cnss']['file_name'] ?>
+                        </p>
+                    <?php endif; ?>
+                    <p class="text-sm text-gray-500 mt-2">Format: PDF, JPG, PNG</p>
+                </div>
 
-            <form class="max-w-lg mx-auto mt-4 bg-white shadow-md p-4 rounded-lg" action="/user/upload" method="post" enctype="multipart/form-data">
-                <label class="block mb-2 text-sm font-medium text-gray-900" for="files6">CGA</label>
-                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" aria-describedby="user_avatar_help6" id="files6" name="files[]" accept=".pdf, .jpg, .jpeg, .png" type="file">
-                <div class="mt-1 text-sm text-gray-500" id="user_avatar_help6">Vous pouvez télécharger jusqu'à 6 fichiers.</div>
-                <button type="submit" class="mt-4 w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Téléverser</button>
-            </form>
-        </div>
+                <!-- Attestation RIB -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-semibold mb-4">Attestation RIB</h3>
+                    <input type="file" name="documents[attestation_rib]" accept=".pdf,.jpg,.jpeg,.png" class="w-full">
+                    <?php if (isset($documents['attestation_rib'])): ?>
+                        <p class="text-sm text-blue-600 mt-2">
+                            Fichier actuel : <?= $documents['attestation_rib']['file_name'] ?>
+                        </p>
+                    <?php endif; ?>
+                    <p class="text-sm text-gray-500 mt-2">Format: PDF, JPG, PNG</p>
+                </div>
+
+                <!-- Bilan -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-semibold mb-4">Bilan des 3 dernières années</h3>
+                    <input type="file" name="documents[bilan]" accept=".pdf,.jpg,.jpeg,.png" class="w-full">
+                    <?php if (isset($documents['bilan'])): ?>
+                        <p class="text-sm text-blue-600 mt-2">
+                            Fichier actuel : <?= $documents['bilan']['file_name'] ?>
+                        </p>
+                    <?php endif; ?>
+                    <p class="text-sm text-gray-500 mt-2">Format: PDF, JPG, PNG</p>
+                </div>
+
+                <!-- Attestation d'identification -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-semibold mb-4">Attestation d'identification fiscale</h3>
+                    <input type="file" name="documents[attestation_identification]" accept=".pdf,.jpg,.jpeg,.png" class="w-full">
+                    <?php if (isset($documents['attestation_identification'])): ?>
+                        <p class="text-sm text-blue-600 mt-2">
+                            Fichier actuel : <?= $documents['attestation_identification']['file_name'] ?>
+                        </p>
+                    <?php endif; ?>
+                    <p class="text-sm text-gray-500 mt-2">Format: PDF, JPG, PNG</p>
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">
+                    Téléverser tous les documents
+                </button>
+            </div>
+        </form>
     </div>
 </body>
 
