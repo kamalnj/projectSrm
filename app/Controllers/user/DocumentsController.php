@@ -14,7 +14,8 @@ class DocumentsController extends Controller
         'attestation_cnss' => 'Attestation CNSS',
         'attestation_rib' => 'Attestation RIB',
         'bilan' => 'Bilan des 3 dernières années',
-        'attestation_identification' => 'Attestation d\'identification fiscale'
+        'attestation_identification' => 'Attestation d\'identification fiscale',
+        'contrat_signe' => 'Contrat signé'
     ];
 
     public function index()
@@ -41,58 +42,37 @@ class DocumentsController extends Controller
         $supplier = $supplierModel->where('user_id', $userId)->first();
 
         if (!$supplier) {
-            return redirect()->to('/documents')->with('error', 'Fournisseur non trouvé.');
+            return redirect()->to('/user/documents')->with('error', 'Fournisseur non trouvé.');
         }
 
         $files = $this->request->getFiles();
         
         if (empty($files['documents'])) {
-            return redirect()->to('/documents')->with('error', 'Aucun fichier sélectionné.');
-        }
-
-        // Vérifier si l'utilisateur a déjà tous les documents requis
-        $existingDocuments = $model->getSupplierDocuments($supplier['id']);
-        $allDocumentsExist = true;
-        
-        foreach ($this->documentTypes as $type => $label) {
-            if (!isset($existingDocuments[$type])) {
-                $allDocumentsExist = false;
-                break;
-            }
-        }
-
-        // Si c'est une première soumission (pas tous les documents présents)
-        if (!$allDocumentsExist) {
-            // Vérifier que tous les documents requis sont fournis
-            $missingDocuments = [];
-            foreach ($this->documentTypes as $type => $label) {
-                if (!isset($files['documents'][$type]) || !$files['documents'][$type]->isValid()) {
-                    $missingDocuments[] = $label;
-                }
-            }
-
-            if (!empty($missingDocuments)) {
-                return redirect()->to('/documents')
-                    ->with('error', 'Tous les documents sont obligatoires pour la première soumission. Documents manquants : ' 
-                        . implode(', ', $missingDocuments));
-            }
+            return redirect()->to('/user/documents')->with('error', 'Aucun fichier sélectionné.');
         }
 
         $uploadedFiles = [];
         $errors = [];
 
+        // Traiter chaque fichier individuellement
         foreach ($files['documents'] as $type => $file) {
             if ($file->isValid() && !$file->hasMoved()) {
                 try {
+                    // Créer le dossier s'il n'existe pas
+                    $uploadPath = FCPATH . 'uploads/documents/' . $type;
+                    if (!is_dir($uploadPath)) {
+                        mkdir($uploadPath, 0777, true);
+                    }
+
                     $newName = $file->getRandomName();
                     $originalName = $file->getName();
-                    $file->move(WRITEPATH . 'uploads', $newName);
+                    $file->move($uploadPath, $newName);
 
                     $model->saveOrUpdateDocument(
                         $supplier['id'],
                         $type,
                         $originalName,
-                        'uploads/' . $newName
+                        'uploads/documents/' . $type . '/' . $newName
                     );
                     
                     $uploadedFiles[] = $this->documentTypes[$type];
@@ -103,7 +83,7 @@ class DocumentsController extends Controller
         }
 
         if (!empty($errors)) {
-            return redirect()->to('/documents')->with('error', implode('<br>', $errors));
+            return redirect()->to('/user/documents')->with('error', implode('<br>', $errors));
         }
 
         // Vérifier si tous les documents sont présents après l'upload
@@ -127,7 +107,7 @@ class DocumentsController extends Controller
             }
         }
 
-        return redirect()->to('/documents')
+        return redirect()->to('/user/documents')
             ->with('success', 'Documents mis à jour avec succès: ' . implode(', ', $uploadedFiles));
     }
 

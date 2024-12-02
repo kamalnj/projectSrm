@@ -12,11 +12,12 @@
                     <a href="/user/my-informations-general" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-transparent hover:border-indigo-500 hover:text-indigo-600 transition-colors duration-200">
                         Mes Informations
                     </a>
-                    <a href="/user/contracts" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-transparent hover:border-indigo-500 hover:text-indigo-600 transition-colors duration-200">
-                        Contrats
-                    </a>
+                    
                     <a href="/user/documents" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-transparent hover:border-indigo-500 hover:text-indigo-600 transition-colors duration-200">
                         Documents
+                    </a>
+                    <a href="/user/contracts" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-transparent hover:border-indigo-500 hover:text-indigo-600 transition-colors duration-200">
+                        Contrats
                     </a>
                 </div>
             </div>
