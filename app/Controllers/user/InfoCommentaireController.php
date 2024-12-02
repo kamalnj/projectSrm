@@ -13,7 +13,7 @@ class InfoCommentaireController extends Controller
         $model = new CommentaireModel();
         $userId = session()->get('user_id');
 
-        $supplierModel = new \App\Models\SupplierModel();
+        $supplierModel = new SupplierModel();
 
         // Récupérer d'abord le fournisseur
         $supplier = $supplierModel->where('user_id', $userId)->first();

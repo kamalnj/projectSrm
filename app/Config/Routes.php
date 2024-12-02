@@ -32,9 +32,13 @@ $routes->post('/documents/upload', 'User\DocumentsController::upload');
 // Routes administratives
 $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
     $routes->get('/', 'AdminController::index');
-    $routes->get('suppliers', 'SuppliersController::index'); 
+    $routes->get('suppliers', 'SuppliersController::index');
+    $routes->get('contracts', 'ContratController::index'); 
     $routes->post('addsuppliers', 'SuppliersController::create');
     $routes->get('supplier/view/(:num)', 'InfoSupplierController::view/$1');
+    $routes->post('supplier/reject/(:num)', 'InfoSupplierController::reject/$1');
+    $routes->post('supplier/accept/(:num)', 'InfoSupplierController::accept/$1');
+    $routes->get('contracts/delete/(:num)', 'ContratController::deleteContract/$1');
 });
 
 // Routes utilisateur

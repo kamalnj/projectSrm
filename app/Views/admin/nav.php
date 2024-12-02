@@ -1,4 +1,4 @@
-<nav class=" bg-slate-100">
+<nav class=" bg-slate-100 border-b-2">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
@@ -9,7 +9,7 @@
           <div class="flex space-x-4">
             <a href="/admin" class="rounded-md  px-3 py-2 text-sm font-medium text-slate-950 hover:bg-slate-200 hover:text-slate-900" aria-current="page">Dashboard</a>
             <a href="/admin/suppliers" class="rounded-md px-3 py-2 text-sm font-medium text-slate-950 hover:bg-slate-200 hover:text-slate-900">Suppliers</a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-slate-950 hover:bg-slate-200 hover:text-slate-900">Contracts</a>
+            <a href="/admin/contracts" class="rounded-md px-3 py-2 text-sm font-medium text-slate-950 hover:bg-slate-200 hover:text-slate-900">Contracts</a>
             <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-slate-950 hover:bg-slate-200 hover:text-slate-900">Documents</a>
           </div>
         </div>
