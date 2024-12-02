@@ -101,9 +101,9 @@ class InfoSupplierController extends BaseController
     $emailService->setFrom('admin@yourdomain.com', 'Admin');
     $emailService->setSubject('Contract Ready for Download');
     $emailService->setMessage("
-        Bonjour $name,<br><br>
-        Le contrat a été généré et est prêt pour téléchargement. Veuiller rejoindre votre portail.<br><br>
-        Merci,<br>
+        Bonjour $name,
+        Le contrat a été généré et est prêt pour téléchargement. Veuiller rejoindre votre portail.
+        Merci,
         Votre équipe.
     ");
 

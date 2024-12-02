@@ -91,32 +91,39 @@
 
     <script>
         function filterTable() {
-            const input = document.getElementById('search-input');
-            const filter = input.value.toLowerCase();
-            const table = document.getElementById('supplier-table');
-            const rows = table.getElementsByTagName('tr');
+    const searchInput = document.getElementById('search-input').value.toLowerCase();
+    const categoryFilter = document.getElementById('category-filter').value.toLowerCase();
+    const table = document.getElementById('supplier-table');
+    const rows = table.getElementsByTagName('tr');
 
-            // Loop through all table rows and hide those that don't match the search query in the 'nom' column
-            for (let i = 1; i < rows.length; i++) {
-                const cells = rows[i].getElementsByTagName('td');
-                let showRow = false;
+    // Loop through all table rows and apply filters
+    for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        let showRow = true;
 
-                const nomCell = cells[0];
-                if (nomCell) {
-                    const textValue = nomCell.textContent || nomCell.innerText;
-                    if (textValue.toLowerCase().indexOf(filter) > -1) {
-                        showRow = true;
-                    }
-                }
-
-                // Show or hide the row based on the filter result
-                if (showRow) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
-                }
+        // Filter by Name
+        const nomCell = cells[0];
+        if (nomCell) {
+            const textValue = nomCell.textContent || nomCell.innerText;
+            if (textValue.toLowerCase().indexOf(searchInput) === -1) {
+                showRow = false;
             }
         }
+
+        // Filter by Category
+        const categoryCell = cells[2];
+        if (categoryCell && categoryFilter) {
+            const categoryValue = categoryCell.textContent || categoryCell.innerText;
+            if (categoryValue.toLowerCase() !== categoryFilter) {
+                showRow = false;
+            }
+        }
+
+        // Show or hide the row based on the filter results
+        rows[i].style.display = showRow ? "" : "none";
+    }
+}
+
     </script>
 </body>
 

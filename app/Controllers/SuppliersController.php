@@ -13,9 +13,12 @@ class SuppliersController extends BaseController
     {
         $supplierModel = new SupplierModel();
         $suppliers = $supplierModel->findAll();
-
+        $categories = $supplierModel->distinct()->select('category')->findAll();
+        $categoryNames = array_column($categories, 'category');
+    
         $data = [
             'suppliers' => $suppliers,
+            'category' => $categoryNames,
         ];
 
         return view('admin/listSuppliers', $data);
@@ -23,14 +26,12 @@ class SuppliersController extends BaseController
 
     public function create()
     {
-        // Load the request data
         $data = [
             'nom' => $this->request->getPost('nom'),
             'email' => $this->request->getPost('email'),
             'category' => $this->request->getPost('category'),
         ];
 
-        // Validate the input
         if (!$this->validate([
             'nom' => 'required|min_length[3]|max_length[255]',
             'email' => 'required|valid_email',
@@ -39,12 +40,10 @@ class SuppliersController extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        // Begin transaction
         $db = \Config\Database::connect();
         $db->transBegin();
 
         try {
-            // Save the data to the users table (for login)
             $userModel = new UserModel();
             $password = bin2hex(random_bytes(4)); // Génère un mot de passe aléatoire de 8 caractères (4 bytes)
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
