@@ -39,6 +39,7 @@ $routes->group('user', ['filter' => 'auth:user'], function ($routes) {
     $routes->post('documents/upload', 'user\DocumentsController::upload');
     $routes->get('contracts', 'user\ContractsController::index');
     $routes->get('contracts/download/(:num)', 'user\ContractsController::download/$1');
+    $routes->post('contracts/upload-signed', 'user\ContractsController::uploadSigned');
 });
 
 // Routes administratives
