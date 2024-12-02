@@ -1,55 +1,36 @@
-<nav class="bg-slate-100">
-  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div class="relative flex h-16 items-center justify-between">
-      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-        <div class="flex shrink-0 items-center">
-          <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+<nav class="bg-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex">
+                <div class="flex-shrink-0 flex items-center">
+                    <img class="h-10 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Logo">
+                </div>
+                <div class="hidden sm:ml-8 sm:flex sm:space-x-8">
+                    <a href="/dashboard" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-transparent hover:border-indigo-500 hover:text-indigo-600 transition-colors duration-200">
+                        Dashboard
+                    </a>
+                    <a href="/my-informations-general" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-transparent hover:border-indigo-500 hover:text-indigo-600 transition-colors duration-200">
+                        Mes Informations
+                    </a>
+                    <a href="/contracts" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-transparent hover:border-indigo-500 hover:text-indigo-600 transition-colors duration-200">
+                        Contrats
+                    </a>
+                    <a href="/documents" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-transparent hover:border-indigo-500 hover:text-indigo-600 transition-colors duration-200">
+                        Documents
+                    </a>
+                </div>
+            </div>
+            
+            <div class="flex items-center">
+                <a href="/logout" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Déconnexion
+                </a>
+            </div>
         </div>
-        <div class="hidden sm:ml-6 sm:block">
-          <div class="flex space-x-4">
-            <a href="/dashboard" class="rounded-md px-3 py-2 text-sm font-medium text-slate-950 hover:bg-slate-200 hover:text-slate-900" aria-current="page">Dashboard</a>
-            <a href="/my-informations-general" class="rounded-md px-3 py-2 text-sm font-medium text-slate-950 hover:bg-slate-200 hover:text-slate-900">Mes Informations</a>
-            <a href="/contracts" class="rounded-md px-3 py-2 text-sm font-medium text-slate-950 hover:bg-slate-200 hover:text-slate-900">Contrats</a>
-            <a href="/documents" class="rounded-md px-3 py-2 text-sm font-medium text-slate-950 hover:bg-slate-200 hover:text-slate-900">Documents</a>
-          </div>
-        </div>
-      </div>
-      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
-
-        <div class="relative ml-3">
-          <div>
-            <a href="/logout">
-            <button
-              type="button"
-              class="relative flex rounded-full hover:bg-slate-200 bg-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              id="user-menu-button"
-              aria-expanded="false"
-              aria-haspopup="true"
-              
-              >
-              <span class="absolute -inset-1.5"></span>
-              <span class="sr-only">Open user menu</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="black"
-                width="24"
-                height="24">
-                <path d="M16.29 7.71a1 1 0 011.41-1.42l4 4a1 1 0 010 1.42l-4 4a1 1 0 01-1.41-1.42L18.17 13H10a1 1 0 010-2h8.17l-1.88-1.29zM9 3a1 1 0 011 1v4a1 1 0 01-2 0V5H7a3 3 0 00-3 3v8a3 3 0 003 3h1v-3a1 1 0 012 0v4a1 1 0 01-1 1H7a5 5 0 01-5-5V8a5 5 0 015-5h2z" />
-              </svg>
-
-
-            </button>
-            </a>
-           
-          </div>
-
-  
-        </div>
-
-      </div>
     </div>
-  </div>
-
 </nav>
