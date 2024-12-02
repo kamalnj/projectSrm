@@ -67,6 +67,6 @@ class InfoFLRController extends BaseController
             $model->save($data);
         }
 
-        return redirect()->to('/my-informations-clients')->with('success', 'Informations enregistrées avec succès.');
+        return redirect()->to('/user/my-informations-clients')->with('success', 'Informations enregistrées avec succès.');
     }
 }

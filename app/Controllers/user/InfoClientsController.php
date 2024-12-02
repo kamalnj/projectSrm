@@ -60,6 +60,6 @@ class InfoClientsController extends Controller
             $model->save($data);
         }
 
-        return redirect()->to('/my-informations-contact')->with('message', 'Données enregistrées avec succès.');
+        return redirect()->to('/user/my-informations-contact')->with('message', 'Données enregistrées avec succès.');
     }
 }

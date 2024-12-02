@@ -13,7 +13,7 @@
 
     <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
-            <form method="post" action="<?= base_url('/my-informations-clients/store'); ?>" class="bg-white shadow-xl rounded-2xl p-8">
+            <form method="post" action="<?= base_url('/user/my-informations-clients/store'); ?>" class="bg-white shadow-xl rounded-2xl p-8">
                 <div class="mb-8">
                     <h2 class="text-3xl font-bold text-gray-900">Références et Clients</h2>
                     <p class="mt-2 text-sm text-gray-500">
@@ -50,7 +50,7 @@
                 <div class="mt-8 flex justify-between">
                     <button
                         type="button"
-                        onclick="window.location.href='/my-informations-flr'"
+                        onclick="window.location.href='/user/my-informations-flr'"
                         class="px-6 py-3 bg-gray-600 text-white font-medium rounded-lg shadow-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200">
                         Précédent
                     </button>

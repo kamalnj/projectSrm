@@ -68,7 +68,7 @@ class InfoGeneralController extends Controller
             $model->insert((object)$data);
         }
 
-        return redirect()->to('/my-informations-flr');
+        return redirect()->to('/user/my-informations-flr');
     }
     
 }
