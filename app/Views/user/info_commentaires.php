@@ -13,7 +13,7 @@
 
     <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
-            <form id="commentForm" method="post" action="/my-informations-commentaires/store" class="bg-white shadow-xl rounded-2xl p-8">
+            <form id="commentForm" method="post" action="/user/my-informations-commentaires/store" class="bg-white shadow-xl rounded-2xl p-8">
                 <div class="mb-8">
                     <h2 class="text-3xl font-bold text-gray-900">Commentaires et Remarques</h2>
                     <p class="mt-2 text-sm text-gray-500">
@@ -46,7 +46,7 @@
                 <div class="mt-8 flex justify-between">
                     <button
                         type="button"
-                        onclick="window.location.href='/my-informations-contact'"
+                        onclick="window.location.href='/user/my-informations-contact'"
                         class="px-6 py-3 bg-gray-600 text-white font-medium rounded-lg shadow-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200">
                         Précédent
                     </button>

@@ -29,7 +29,7 @@
             </div>
         <?php endif; ?>
 
-        <form action="/documents/upload" method="post" enctype="multipart/form-data" class="space-y-8">
+        <form action="/user/documents/upload" method="post" enctype="multipart/form-data" class="space-y-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- RC -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">

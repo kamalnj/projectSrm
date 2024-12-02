@@ -50,7 +50,7 @@ class AuthController extends BaseController
                 'isLoggedIn' => true,
             ]);
 
-            return redirect()->to($user['role'] === 'admin' ? '/admin' : '/dashboard');
+            return redirect()->to($user['role'] === 'admin' ? '/admin' : '/user');
         }
 
         return redirect()->back()->with('error', 'Invalid login credentials');

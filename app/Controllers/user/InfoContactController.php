@@ -42,7 +42,7 @@ class InfoContactController extends Controller
                 return redirect()->back()
                     ->with('error', 'Veuillez remplir les champs requis ou ajouter un contact.');
             }
-            return redirect()->to('/my-informations-commentaires');
+            return redirect()->to('/user/my-informations-commentaires');
         }
 
         // 4. Récupérer les données du formulaire avec le supplier_id au lieu du user_id
@@ -58,7 +58,7 @@ class InfoContactController extends Controller
         // 5. Insérer un nouvel enregistrement
         $model->save($data);
 
-        return redirect()->to('/my-informations-commentaires')->with('message', 'Données enregistrées avec succès.');
+        return redirect()->to('/user/my-informations-commentaires')->with('message', 'Données enregistrées avec succès.');
     }
 
     public function delete($id)
@@ -71,7 +71,7 @@ class InfoContactController extends Controller
         $supplier = $supplierModel->where('user_id', $userId)->first();
 
         if (!$supplier) {
-            return redirect()->to('/my-informations-contact')
+            return redirect()->to('/user/my-informations-contact')
                 ->with('error', 'Fournisseur non trouvé.');
         }
 
@@ -82,17 +82,17 @@ class InfoContactController extends Controller
         ])->first();
 
         if (!$contact) {
-            return redirect()->to('/my-informations-contact')
+            return redirect()->to('/user/my-informations-contact')
                 ->with('error', 'Contact non trouvé ou non autorisé.');
         }
 
         // Supprimer le contact
         if ($model->delete($id)) {
-            return redirect()->to('/my-informations-contact')
+            return redirect()->to('/user/my-informations-contact')
                 ->with('message', 'Contact supprimé avec succès.');
         }
 
-        return redirect()->to('/my-informations-contact')
+        return redirect()->to('/user/my-informations-contact')
             ->with('error', 'Erreur lors de la suppression du contact.');
     }
 }

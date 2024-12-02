@@ -14,7 +14,7 @@
 
     <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
-            <form method="post" action="/my-informations-general/store" class="bg-white shadow-xl rounded-2xl p-8">
+            <form method="post" action="/user/my-informations-general/store" class="bg-white shadow-xl rounded-2xl p-8">
                 <div class="mb-8">
                     <h2 class="text-3xl font-bold text-gray-900">Informations Générales</h2>
                     <p class="mt-2 text-sm text-gray-500">
