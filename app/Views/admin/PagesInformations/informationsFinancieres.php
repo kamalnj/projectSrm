@@ -15,9 +15,15 @@
             'Certifications qualité' => $informationsFinancieres['certifications_qualite'] ?? 'N/A',
             'Licences et autorisations' => $informationsFinancieres['licences_autorisations'] ?? 'N/A',
             'Polices d\'assurances' => $informationsFinancieres['polices_assurances'] ?? 'N/A',
-            'Plan de continuité' => $informationsFinancieres['plan_continuite'] ?? 'N/A',
-            'Politique RSE' => $informationsFinancieres['politique_rse'] ?? 'N/A',
-            'Pratiques éthiques' => $informationsFinancieres['pratiques_ethiques'] ?? 'N/A',
+            'Plan de continuité' => isset($informationsFinancieres['plan_continuite']) 
+        ? ($informationsFinancieres['plan_continuite'] ? 'Oui' : 'Non') 
+        : 'N/A',
+    'Politique RSE' => isset($informationsFinancieres['politique_rse']) 
+        ? ($informationsFinancieres['politique_rse'] ? 'Oui' : 'Non') 
+        : 'N/A',
+    'Pratiques éthiques' => isset($informationsFinancieres['pratiques_ethiques']) 
+        ? ($informationsFinancieres['pratiques_ethiques'] ? 'Oui' : 'Non') 
+        : 'N/A',
         ];
 
         foreach ($fields as $label => $value): 

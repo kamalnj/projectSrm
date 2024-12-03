@@ -46,7 +46,8 @@ $routes->group('user', ['filter' => 'auth:user'], function ($routes) {
 $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
     $routes->get('/', 'AdminController::index');
     $routes->get('suppliers', 'SuppliersController::index');
-    $routes->get('contracts', 'ContratController::index'); 
+    $routes->get('contracts', 'ContratController::index');
+    $routes->get('documents', 'DocumentController::index');  
     $routes->post('addsuppliers', 'SuppliersController::create');
     $routes->get('supplier/view/(:num)', 'InfoSupplierController::view/$1');
     $routes->post('supplier/reject/(:num)', 'InfoSupplierController::reject/$1');
