@@ -77,8 +77,8 @@ class ContractsController extends Controller
             return redirect()->back()->with('error', 'Seuls les fichiers PDF sont acceptés.');
         }
         
-        // Créer le dossier s'il n'existe pas
-        $uploadPath = FCPATH . 'uploads/documents/contracts';
+        // Utiliser le même dossier documents
+        $uploadPath = FCPATH . 'uploads/documents';
         if (!is_dir($uploadPath)) {
             mkdir($uploadPath, 0777, true);
         }
@@ -96,7 +96,7 @@ class ContractsController extends Controller
                 $supplier['id'],
                 'contrat_signe',
                 $originalName,
-                'uploads/documents/contracts/' . $newName
+                'uploads/documents/' . $newName
             );
             
             // Envoyer un email aux administrateurs

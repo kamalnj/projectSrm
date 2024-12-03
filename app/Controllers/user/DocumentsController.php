@@ -58,8 +58,8 @@ class DocumentsController extends Controller
         foreach ($files['documents'] as $type => $file) {
             if ($file->isValid() && !$file->hasMoved()) {
                 try {
-                    // Créer le dossier s'il n'existe pas
-                    $uploadPath = FCPATH . 'uploads/documents/' . $type;
+                    // Utiliser un seul dossier 'documents'
+                    $uploadPath = FCPATH . 'uploads/documents';
                     if (!is_dir($uploadPath)) {
                         mkdir($uploadPath, 0777, true);
                     }
@@ -72,7 +72,7 @@ class DocumentsController extends Controller
                         $supplier['id'],
                         $type,
                         $originalName,
-                        'uploads/documents/' . $type . '/' . $newName
+                        'uploads/documents/' . $newName
                     );
                     
                     $uploadedFiles[] = $this->documentTypes[$type];
