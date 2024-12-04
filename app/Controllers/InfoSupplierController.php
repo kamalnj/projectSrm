@@ -41,15 +41,24 @@ class InfoSupplierController extends BaseController
         $commentairesRemarques = $commentaireModel->where('supplier_id', $id)->findAll();
         $supplierContacts = $contactModel->where('supplier_id', $id)->findAll();
 
+        // Vérifier si toutes les informations requises sont présentes
+        $isComplete = $this->checkInformationsComplete(
+            $infoGenerales,
+            $informationsFinancieres,
+            $referencesClients,
+            $supplierContacts
+        );
+
         // Return the view with the data
         return view('admin/infoSupplier', [
             'supplier' => $supplier,
-            'supplier_id' => $id, 
+            'supplier_id' => $id,
             'infoGenerales' => $infoGenerales,
             'informationsFinancieres' => $informationsFinancieres,
             'referencesClients' => $referencesClients,
             'supplierContacts' => $supplierContacts,
             'commentairesRemarques' => $commentairesRemarques,
+            'isComplete' => $isComplete
         ]);
     }
 
@@ -215,5 +224,75 @@ class InfoSupplierController extends BaseController
             // If email sending fails, log an error or handle it accordingly
             log_message('error', 'Email failed to send.');
         }
+    }
+
+    private function checkInformationsComplete($infoGenerales, $informationsFinancieres, $referencesClients, $supplierContacts)
+    {
+        // Vérifier les informations générales
+        if (empty($infoGenerales)) {
+            return false;
+        }
+
+        // Vérifier les informations financières
+        if (empty($informationsFinancieres)) {
+            return false;
+        }
+
+        // Vérifier qu'il y a au moins une référence client
+        if (empty($referencesClients)) {
+            return false;
+        }
+
+        // Vérifier qu'il y a au moins un contact
+        if (empty($supplierContacts)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function index($id)
+    {
+        // Load models
+        $supplierModel = new SupplierModel();
+        $companyModel = new CompanyModel();
+        $companyInfoFLRModel = new CompanyInfoFLRModel();
+        $clientseModel = new ClientseModel();
+        $commentaireModel = new CommentaireModel();
+        $contactModel = new ContactModel();
+
+        // Fetch the supplier data using the id
+        $supplier = $supplierModel->find($id);
+
+        // If no supplier found, throw a 404 page not found exception
+        if (!$supplier) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException("Supplier not found");
+        }
+
+        // Fetch related information from other models
+        $infoGenerales = $companyModel->where('supplier_id', $id)->first();
+        $informationsFinancieres = $companyInfoFLRModel->where('supplier_id', $id)->first();
+        $referencesClients = $clientseModel->where('supplier_id', $id)->findAll();
+        $commentairesRemarques = $commentaireModel->where('supplier_id', $id)->findAll();
+        $supplierContacts = $contactModel->where('supplier_id', $id)->findAll();
+
+        $isComplete = $this->checkInformationsComplete(
+            $infoGenerales,
+            $informationsFinancieres,
+            $referencesClients,
+            $supplierContacts
+        );
+
+        // Return the view with the data
+        return view('admin/infoSupplier', [
+            'supplier' => $supplier,
+            'supplier_id' => $id,
+            'infoGenerales' => $infoGenerales,
+            'informationsFinancieres' => $informationsFinancieres,
+            'referencesClients' => $referencesClients,
+            'supplierContacts' => $supplierContacts,
+            'commentairesRemarques' => $commentairesRemarques,
+            'isComplete' => $isComplete
+        ]);
     }
 }

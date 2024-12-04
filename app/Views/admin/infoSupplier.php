@@ -52,7 +52,11 @@
                 <div class="grid grid-cols-2 gap-4">
                     <form action="<?= base_url('admin/supplier/accept/' . $supplier_id) ?>" method="POST">
                         <button type="submit" 
-                                class="w-full flex items-center justify-center px-6 py-3 bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-colors">
+                                <?= isset($isComplete) && !$isComplete ? 'disabled' : '' ?>
+                                class="w-full flex items-center justify-center px-6 py-3 
+                                       <?= isset($isComplete) && $isComplete ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-gray-300 cursor-not-allowed' ?> 
+                                       text-white font-medium rounded-lg focus:outline-none focus:ring-2 
+                                       focus:ring-offset-2 focus:ring-emerald-500 transition-colors">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
@@ -61,9 +65,12 @@
                     </form>
 
                     <form action="<?= base_url('admin/supplier/reject/' . $supplier_id) ?>" method="POST">
-                        <input type="hidden" name="commentaire" id="commentaire-input" value="">
                         <button type="submit"
-                                class="w-full flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors">
+                                <?= isset($isComplete) && !$isComplete ? 'disabled' : '' ?>
+                                class="w-full flex items-center justify-center px-6 py-3 
+                                       <?= isset($isComplete) && $isComplete ? 'bg-red-600 hover:bg-red-700' : 'bg-gray-300 cursor-not-allowed' ?>
+                                       text-white font-medium rounded-lg focus:outline-none focus:ring-2 
+                                       focus:ring-offset-2 focus:ring-red-500 transition-colors">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
@@ -71,6 +78,14 @@
                         </button>
                     </form>
                 </div>
+
+                <?php if (isset($isComplete) && !$isComplete): ?>
+                    <div class="mt-4 p-4 bg-yellow-50 rounded-lg">
+                        <p class="text-sm text-yellow-700">
+                            <span class="font-medium">Note:</span> Les boutons sont désactivés car toutes les informations requises ne sont pas encore disponibles.
+                        </p>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
