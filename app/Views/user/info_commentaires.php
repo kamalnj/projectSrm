@@ -113,7 +113,7 @@
 
     function closeSuccessModal() {
         document.getElementById('successModal').classList.add('hidden');
-        window.location.href = '/dashboard';
+        window.location.href = '/user/';
     }
 
     document.getElementById('successModal').addEventListener('click', function(e) {
