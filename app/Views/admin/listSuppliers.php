@@ -4,77 +4,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supplier Management</title>
+    <title>Gestion des Fournisseurs</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/flowbite@1.6.4/dist/flowbite.min.js"></script>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-slate-50">
 
     <!-- Navigation -->
     <?php include 'nav.php'; ?>
 
     <!-- Main Section -->
-    <section class="bg-gray-50 dark:bg-gray-900 p-6 sm:p-8 antialiased">
-        <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
-            <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-
-                <!-- Top Bar -->
-                <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                    <!-- Search Bar -->
-                    <div class="w-full md:w-1/2 relative">
-                        <label for="search-input" class="sr-only">Search</label>
-                        <div class="flex items-center w-full">
-                            <input type="text" id="search-input" class="w-full p-2 pl-10 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500" placeholder="Search Supplier by Name" onkeyup="filterTable()">
-                            <svg class="absolute left-3 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+    <section class="py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+                
+                <!-- Header -->
+                <div class="p-6 border-b border-gray-100">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <!-- Search -->
+                        <div class="relative flex-1 max-w-lg">
+                            <input type="text" 
+                                   id="search-input" 
+                                   class="w-full pl-12 pr-4 py-3 text-sm text-gray-700 bg-gray-50 border border-gray-200 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-colors" 
+                                   placeholder="Rechercher un fournisseur..."
+                                   onkeyup="filterTable()">
+                            <svg class="absolute left-4 top-3.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                             </svg>
                         </div>
-                    </div>
 
-                    <!-- Updated Add Supplier Button -->
-                    <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                        <button type="button" id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="flex items-center justify-center px-6 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg transition duration-300 ease-in-out transform hover:bg-blue-700 focus:ring-4 focus:ring-blue-500 focus:outline-none dark:bg-blue-700 dark:hover:bg-blue-600">
-                            <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                        <!-- Add Button -->
+                        <button type="button" 
+                                id="defaultModalButton" 
+                                data-modal-target="defaultModal" 
+                                data-modal-toggle="defaultModal"
+                                class="inline-flex items-center px-5 py-3 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"/>
                             </svg>
-                            Add Supplier
+                            Ajouter un fournisseur
                         </button>
                     </div>
-
                 </div>
 
-                <!-- Supplier Table -->
-                <div id="results" class="overflow-x-auto mt-6">
+                <!-- Table -->
+                <div id="results" class="overflow-x-auto">
                     <?php if (!empty($suppliers)): ?>
-                        <table id="supplier-table" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" class="px-4 py-3">Supplier Name</th>
-                                    <th scope="col" class="px-4 py-3">Email</th>
-                                    <th scope="col" class="px-4 py-3">Category</th>
-                                    <th scope="col" class="px-4 py-3">Actions</th>
+                        <table id="supplier-table" class="w-full">
+                            <thead>
+                                <tr class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th class="px-6 py-4">Nom</th>
+                                    <th class="px-6 py-4">Email</th>
+                                    <th class="px-6 py-4">Catégorie</th>
+                                    <th class="px-6 py-4">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="divide-y divide-gray-100">
                                 <?php foreach ($suppliers as $supplier): ?>
-                                    <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-150">
-                                        <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"><?= esc($supplier['nom']); ?></td>
-                                        <td class="px-4 py-3"><?= esc($supplier['email']); ?></td>
-                                        <td class=" pl-8 py-3"><?= esc($supplier['category']); ?></td>
-                                        <td class=" pl-3 py-3">
-                                            <a href="<?= site_url('/admin/supplier/view/' . $supplier['id']) ?>"
-                                                class="py-2 px-4 bg-white cursor-pointer hover:bg-gray-300 text-sm font-medium text-gray-900 rounded-lg">
-                                                View
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            <?= esc($supplier['nom']); ?>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                            <?= esc($supplier['email']); ?>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                            <?= esc($supplier['category']); ?>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                            <a href="<?= site_url('/admin/supplier/view/' . $supplier['id']) ?>" 
+                                               class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                                                Voir détails
                                             </a>
-
-
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
                                 <?php if (empty($suppliers)): ?>
                                     <tr>
-                                        <td colspan="4" class="text-center p-4 text-gray-500">No suppliers found. Add a new supplier to get started.</td>
+                                        <td colspan="4" class="px-6 py-12 text-center text-gray-500">
+                                            Aucun fournisseur trouvé. Ajoutez un nouveau fournisseur pour commencer.
+                                        </td>
                                     </tr>
                                 <?php endif; ?>
                             </tbody>
@@ -91,39 +101,34 @@
 
     <script>
         function filterTable() {
-    const searchInput = document.getElementById('search-input').value.toLowerCase();
-    const categoryFilter = document.getElementById('category-filter').value.toLowerCase();
-    const table = document.getElementById('supplier-table');
-    const rows = table.getElementsByTagName('tr');
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const categoryFilter = document.getElementById('category-filter').value.toLowerCase();
+            const table = document.getElementById('supplier-table');
+            const rows = table.getElementsByTagName('tr');
 
-    // Loop through all table rows and apply filters
-    for (let i = 1; i < rows.length; i++) {
-        const cells = rows[i].getElementsByTagName('td');
-        let showRow = true;
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let showRow = true;
 
-        // Filter by Name
-        const nomCell = cells[0];
-        if (nomCell) {
-            const textValue = nomCell.textContent || nomCell.innerText;
-            if (textValue.toLowerCase().indexOf(searchInput) === -1) {
-                showRow = false;
+                const nomCell = cells[0];
+                if (nomCell) {
+                    const textValue = nomCell.textContent || nomCell.innerText;
+                    if (textValue.toLowerCase().indexOf(searchInput) === -1) {
+                        showRow = false;
+                    }
+                }
+
+                const categoryCell = cells[2];
+                if (categoryCell && categoryFilter) {
+                    const categoryValue = categoryCell.textContent || categoryCell.innerText;
+                    if (categoryValue.toLowerCase() !== categoryFilter) {
+                        showRow = false;
+                    }
+                }
+
+                rows[i].style.display = showRow ? "" : "none";
             }
         }
-
-        // Filter by Category
-        const categoryCell = cells[2];
-        if (categoryCell && categoryFilter) {
-            const categoryValue = categoryCell.textContent || categoryCell.innerText;
-            if (categoryValue.toLowerCase() !== categoryFilter) {
-                showRow = false;
-            }
-        }
-
-        // Show or hide the row based on the filter results
-        rows[i].style.display = showRow ? "" : "none";
-    }
-}
-
     </script>
 </body>
 

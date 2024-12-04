@@ -4,7 +4,7 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <div class="flex-shrink-0 flex items-center">
-                    <img class="h-10 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Logo">
+                    <img class="h-14 w-auto" src="https://www.dreamjob.ma/wp-content/uploads/2021/06/S2M-Emploi-Recrutement.png" alt="Logo">
                 </div>
                 <div class="hidden sm:ml-8 sm:flex sm:space-x-8">
                     <a href="/admin" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-transparent hover:border-indigo-500 hover:text-indigo-600 transition-colors duration-200">
